@@ -1,40 +1,39 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import Todo from "./Todo";
-import './Style.css'
+import "./Style.css";
 
 const List = () => {
   const [items, setItems] = useState([]);
+  const [input, setInput] = useState("");
+  const [editdata, setEditdata] = useState(null);
 
-  const addData = (task) => {
-    if (!task.text) {
-      return;
-    }
+  // const addData = (task) => {
+  //   if (!task.text) {
+  //     return;
+  //   }
 
-    const newData = [task, ...items];
-    setItems(newData);
-  };
-
-  const removeData = (id) => {
-    let updatedData = [...items].filter((task) => task.id !== id);
-    setItems(updatedData);
-  };
-
-  const completeData = (id) => {
-    let updatedData = items.map((task) => {
-      if (task.id === id) {
-        task.isComplete = true;
-      }
-
-      return task;
-    });
-    setItems(updatedData);
-  };
+  //   const newData = [task, ...items];
+  //   setItems(newData);
+  // };
 
   return (
     <>
-      <Form addData={addData} />
-      <Todo items={items} completeData={completeData} removeData={removeData} />
+      <Form
+        // addData={addData}
+        input={input}
+        setInput={setInput}
+        items={items}
+        setItems={setItems}
+        editdata={editdata}
+        setEditdata={setEditdata}
+      />
+      <Todo
+        items={items}
+        setItems={setItems}
+        editdata={editdata}
+        setEditdata={setEditdata}
+      />
     </>
   );
 };
